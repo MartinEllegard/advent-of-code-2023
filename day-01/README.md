@@ -1,6 +1,6 @@
 # Day 1
 
-## Hyperfine benchmark Mac M1 Pro:
+## Benchmark MacBook Pro M1:
 | Task         | avg       | Max    |   Min   |
 |--------------|-----------|--------|---------|
 | Part 1       | 1.3 ms    | 2.4 ms | 0.3 ms  |
