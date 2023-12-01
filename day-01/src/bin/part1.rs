@@ -1,5 +1,6 @@
 #![feature(test)]
 
+use rayon::prelude::*;
 use std::u32;
 
 extern crate test;
@@ -18,7 +19,7 @@ fn main() {
 
 fn part1(input: &str) -> u32 {
     input
-        .lines()
+        .par_lines()
         .map(|line| {
             let digits: Vec<u32> = line.chars().filter_map(|c| c.to_digit(10)).collect();
             let first = digits.first().expect("must contain a digit");

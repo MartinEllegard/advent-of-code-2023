@@ -1,5 +1,7 @@
 #![feature(test)]
 
+use rayon::prelude::*;
+
 extern crate test;
 
 #[bench]
@@ -15,7 +17,7 @@ fn main() {
 }
 
 fn part2(input: &str) -> u32 {
-    input.lines().map(|line| extract(line)).sum()
+    input.par_lines().map(|line| extract(line)).sum()
 }
 
 fn extract(line: &str) -> u32 {
