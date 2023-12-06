@@ -1,33 +1,20 @@
-#![feature(test)]
+use day_01::part1::process;
+use miette::Context;
 
-use rayon::prelude::*;
-use std::u32;
+#[cfg(feature = "dhat-heap")]
+#[global_allocator]
+static ALLOC: dhat::Alloc = dhat::Alloc;
 
-extern crate test;
+#[tracing::instrument]
+fn main() -> miette::Result<()> {
+    #[cfg(feature = "dhat-heap")]
+    let _profiler = dhat::Profiler::new_heap();
 
-#[bench]
-fn name(b: &mut test::Bencher) {
-    let input = include_str!("input1.txt");
-    b.iter(|| part1(input))
-}
+    #[cfg(not(feature = "dhat-heap"))]
+    tracing_subscriber::fmt::init();
 
-fn main() {
-    let input = include_str!("input1.txt");
-    let result = part1(input);
-    println!("result is: {:?}", result);
-}
-
-fn part1(input: &str) -> u32 {
-    input
-        .par_lines()
-        .map(|line| {
-            let digits: Vec<u32> = line.chars().filter_map(|c| c.to_digit(10)).collect();
-            let first = digits.first().expect("must contain a digit");
-            let out = match digits.last() {
-                Some(last) => format!("{0}{1}", first, last),
-                None => format!("{0}{1}", first, first),
-            };
-            out.parse::<u32>().expect("Must be a number")
-        })
-        .sum()
+    let file = include_str!("../../input1.txt");
+    let result = process(file).context("process part 1")?;
+    println!("{}", result);
+    Ok(())
 }
