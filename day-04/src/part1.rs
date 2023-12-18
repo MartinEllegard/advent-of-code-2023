@@ -1,4 +1,6 @@
+use nom::AsBytes;
 use rayon::prelude::*;
+use std::{cmp, str::from_utf8};
 
 use crate::custom_error::AocError;
 
@@ -24,27 +26,24 @@ impl Card {
         let winners: Vec<u32> = game_it
             .next()
             .unwrap()
-            .trim_start()
-            .trim_end()
+            .replace("  ", " 0")
+            .trim()
             .split(" ")
             .map(|num| {
-                num.trim_start()
-                    .trim_end()
-                    .parse::<u32>()
-                    .expect("num must be number")
+                dbg!(num);
+                num.trim().parse::<u32>().unwrap()
             })
             .collect();
+
         let numbers: Vec<u32> = game_it
             .last()
             .unwrap()
-            .trim_start()
-            .trim_end()
+            .replace("  ", " 0")
+            .trim()
             .split(" ")
             .map(|num| {
-                num.trim_start()
-                    .trim_end()
-                    .parse::<u32>()
-                    .expect("must be a number")
+                dbg!(num);
+                num.trim().parse::<u32>().unwrap()
             })
             .collect();
 
@@ -58,7 +57,7 @@ impl Card {
 
 #[tracing::instrument]
 pub fn process(input: &str) -> miette::Result<String, AocError> {
-    let _card: Vec<Card> = input.par_lines().map(|line| Card::new(line)).collect();
+    let _card: Vec<Card> = input.lines().map(|line| Card::new(line)).collect();
     // TODO: Logic
     Ok(input.to_string())
 }
