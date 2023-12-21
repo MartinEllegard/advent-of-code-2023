@@ -1,25 +1,23 @@
-use nom::AsBytes;
 use rayon::prelude::*;
-use std::{cmp, str::from_utf8};
 
 use crate::custom_error::AocError;
 
 struct Card {
-    id: u32,
+    // id: u32,
     winning_numbers: Vec<u32>,
     my_numbers: Vec<u32>,
 }
 impl Card {
     fn new(line: &str) -> Self {
-        let mut it = line.split(":");
-        let id = it
-            .next()
-            .expect("must exist")
-            .split(" ")
-            .last()
-            .expect("should be a number")
-            .parse::<u32>()
-            .expect("Unparseable");
+        let it = line.split(":");
+        // let id = it
+        //     .next()
+        //     .expect("must exist")
+        //     .split(" ")
+        //     .last()
+        //     .expect("should be a number")
+        //     .parse::<u32>()
+        //     .expect("Unparseable");
 
         let mut game_it = it.last().expect("must exist").split("|");
 
@@ -29,10 +27,7 @@ impl Card {
             .replace("  ", " 0")
             .trim()
             .split(" ")
-            .map(|num| {
-                dbg!(num);
-                num.trim().parse::<u32>().unwrap()
-            })
+            .map(|num| num.trim().parse::<u32>().unwrap())
             .collect();
 
         let numbers: Vec<u32> = game_it
@@ -41,14 +36,11 @@ impl Card {
             .replace("  ", " 0")
             .trim()
             .split(" ")
-            .map(|num| {
-                dbg!(num);
-                num.trim().parse::<u32>().unwrap()
-            })
+            .map(|num| num.trim().parse::<u32>().unwrap())
             .collect();
 
         Card {
-            id,
+            // id,
             winning_numbers: winners,
             my_numbers: numbers,
         }
@@ -57,9 +49,23 @@ impl Card {
 
 #[tracing::instrument]
 pub fn process(input: &str) -> miette::Result<String, AocError> {
-    let _card: Vec<Card> = input.lines().map(|line| Card::new(line)).collect();
-    // TODO: Logic
-    Ok(input.to_string())
+    let cards: Vec<Card> = input.par_lines().map(Card::new).collect();
+    let mut sum = 0;
+    for card in cards.iter() {
+        let mut card_sum = 0;
+        card.my_numbers.iter().for_each(|number| {
+            if card.winning_numbers.contains(number) {
+                if card_sum == 0 {
+                    card_sum = 1;
+                } else {
+                    card_sum <<= 1;
+                }
+            }
+        });
+        sum += card_sum;
+    }
+    println!("{0}", sum);
+    Ok(sum.to_string())
 }
 
 #[cfg(test)]
