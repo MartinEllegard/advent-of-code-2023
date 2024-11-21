@@ -1,0 +1,4 @@
+bench_aoc2024day0  fastest       │ slowest       │ median        │ mean          │ samples │ iters
+├─ part1           46.04 µs      │ 639.7 µs      │ 63.27 µs      │ 69.26 µs      │ 100     │ 100
+╰─ part2           58.7 µs       │ 1.206 ms      │ 74.85 µs      │ 91.14 µs      │ 100     │ 100
+

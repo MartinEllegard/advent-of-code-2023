@@ -63,7 +63,6 @@ pub fn process(input: &str) -> miette::Result<String, AocError> {
         });
         sum += card_sum;
     }
-    println!("{0}", sum);
     Ok(sum.to_string())
 }
 
