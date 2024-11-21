@@ -1,5 +1,51 @@
 # advent-of-code-2023
 Advent of code 2023 challenge
 
-## Benchmark
-cargo bench --bench {{part}} >> bench.txt
+## Dependancies
+* [all] make
+* [rust] If solving using rust
+  * Rust
+  * [cargo] cargo-binstall
+  * [cargo] cargo-generate
+
+## Rust
+### Setup
+Installing dependencies:
+```bash
+cargo install cargo-binstall
+cargo binstall cargo-generate
+```
+### Create day
+```bash
+make rust-create-day -e day=1 -e year=2024
+```
+* day={WORKING_DAY}
+* year={WORKING_YEAR}
+
+### Run day aka getting final result
+```bash
+make rust-run-day -e day=1 -e year=2024
+```
+* day={WORKING_DAY}
+* year={WORKING_YEAR}
+
+### Test day aka getting testing against example result
+```bash
+make rust-run-day -e day=1 -e year=2024
+```
+* day={WORKING_DAY}
+* year={WORKING_YEAR}
+
+### Benchmark day ~ Documenting performance
+```bash
+make rust-bench-day -e day=1 -e year=2024
+```
+* day={WORKING_DAY}
+* year={WORKING_YEAR}
+
+### Benchmark all ~ Documenting performance
+```bash
+make rust-bench-all
+```
+## Go 
+TODO
