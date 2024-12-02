@@ -7,7 +7,7 @@ rust-test-day:
 	@cargo test -p aoc${year}day${day}
 rust-bench-all:
 	@echo "# Rust aoc benchmarks" > rust-benchmarks.md
-	@cargo bench -q --workspace >> rust-benchmarks.md
+	@cargo bench -q --workspace --message-format short >> rust-benchmarks.md
 rust-bench-day:
 	@cargo bench --bench bench-aoc${year}day${day} >> ${year}/aoc${year}day${day}/bench.txt
 rust-create-day:
