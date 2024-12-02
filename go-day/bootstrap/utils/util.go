@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"fmt"
@@ -6,13 +6,15 @@ import (
 	"strings"
 )
 
-const dirpath = "AABBCCDDEE"
+const dirpath = "2024/aoc2024day1/util.go"
 
-func LoadInput(part int32, test bool) ([]string, error) {
+func LoadInput(part int32, test bool, bench bool) ([]string, error) {
 	var filename string
 
 	if test {
-		filename = fmt.Sprint("input_part_", part, "_example.txt")
+		filename = fmt.Sprint("../input_part_", part, "_example.txt")
+	} else if bench {
+		filename = fmt.Sprint("../input_part_", part, ".txt")
 	} else {
 		filename = fmt.Sprint("input_part_", part, ".txt")
 	}
@@ -25,8 +27,9 @@ func LoadInput(part int32, test bool) ([]string, error) {
 	fileContent := string(bytesRead)
 	lines := strings.Split(fileContent, "\n")
 
+	// Check if last line is empty
 	if lines[len(lines)-1] == "" {
-		lines = lines[:len(lines)-2]
+		lines = lines[:len(lines)-1]
 	}
 
 	return lines, nil

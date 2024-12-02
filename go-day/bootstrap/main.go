@@ -1,19 +1,25 @@
 package main
 
-import "log"
+import (
+	"AABBCCDD/part1"
+	"AABBCCDD/part2"
+	"AABBCCDD/utils"
+	"log"
+)
 
 func main() {
-	part_1_input, err := LoadInput(1, false)
+	part_1_input, err := utils.LoadInput(1, false, false)
 	if err != nil {
 		log.Fatal("Failed to laod input")
 	}
-	part_2_input, err := LoadInput(2, false)
+	part_2_input, err := utils.LoadInput(2, false, false)
 	if err != nil {
 		log.Fatal("Failed to laod input")
 	}
 
-	part_1_answer := processPart1(part_1_input)
+	part_1_answer := part1.ProcessPart1(part_1_input)
 	log.Println("Part 1: ", part_1_answer)
-	part_2_answer := processPart2(part_2_input)
+
+	part_2_answer := part2.ProcessPart2(part_2_input)
 	log.Println("Part 2: ", part_2_answer)
 }
