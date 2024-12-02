@@ -12,7 +12,7 @@ func TestProcessPart2(t *testing.T) {
 		t.Errorf("Failed to load input: %S", err)
 	}
 
-	result := processPart1(input)
+	result := processPart2(input)
 
 	assert.Equal(t, 0, result)
 }
@@ -24,6 +24,6 @@ func BenchmarkProcessPart2(t *testing.B) {
 	}
 
 	for i := 0; i < t.N; i++ {
-		processPart1(input)
+		processPart2(input)
 	}
 }

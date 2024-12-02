@@ -23,6 +23,11 @@ func LoadInput(part int32, test bool) ([]string, error) {
 	}
 
 	fileContent := string(bytesRead)
+	lines := strings.Split(fileContent, "\n")
 
-	return strings.Split(fileContent, "\n"), nil
+	if lines[len(lines)-1] == "" {
+		lines = lines[:len(lines)-2]
+	}
+
+	return lines, nil
 }
