@@ -1,0 +1,22 @@
+?   	aoc2024day1	[no test files]
+PASS
+ok  	aoc2024day1/part1	0.207s
+goos: darwin
+goarch: arm64
+pkg: aoc2024day1/part2
+cpu: Apple M1 Pro
+BenchmarkProcessPart2-8     	    3222	    372911 ns/op
+BenchmarkProcessPart2-8     	    3183	    371999 ns/op
+BenchmarkProcessPart2-8     	    3171	    391763 ns/op
+BenchmarkProcessPart2-8     	    3174	    372682 ns/op
+BenchmarkProcessPart2-8     	    3176	    377247 ns/op
+BenchmarkProcessPart2-8     	    3148	    371326 ns/op
+BenchmarkProcessPart2v2-8   	    2977	    390699 ns/op
+BenchmarkProcessPart2v2-8   	    3048	    388632 ns/op
+BenchmarkProcessPart2v2-8   	    3016	    388697 ns/op
+BenchmarkProcessPart2v2-8   	    3026	    389561 ns/op
+BenchmarkProcessPart2v2-8   	    3027	    391665 ns/op
+BenchmarkProcessPart2v2-8   	    2978	    388817 ns/op
+PASS
+ok  	aoc2024day1/part2	15.608s
+?   	aoc2024day1/utils	[no test files]

@@ -28,3 +28,14 @@ func BenchmarkProcessPart2(t *testing.B) {
 		ProcessPart2(input)
 	}
 }
+
+func BenchmarkProcessPart2v2(t *testing.B) {
+	input, err := utils.LoadInput(2, false, true)
+	if err != nil {
+		t.Errorf("Failed to load input: %S", err)
+	}
+
+	for i := 0; i < t.N; i++ {
+		ProcessPart2v2(input)
+	}
+}
